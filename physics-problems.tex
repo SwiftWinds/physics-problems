@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+\newcommand{\numpy}{{\tt numpy}}    % tt font for numpy
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\graphicspath{ {./images/} }
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cyan,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\begin{document}
+\begin{align*}
+      \sum F_{x_l} = F_s - F_k + m_l g \sin\theta - T = 0                                       \\
+      \sum F_{y_l} = n_r - m_l g \cos\theta - n_b = 0                                           \\
+      \sum F_{y_u} = n_u - m_u g \cos\theta = 0                                                 \\
+      n_u = m_u g \cos\theta                                                                    \\
+      n_r - m_l g \cos\theta - m_u g \cos\theta = 0                                             \\
+      n_r = m_l g \cos\theta + m_u g \cos\theta                                                 \\
+      F_k = \mu_k n_r = \mu_k (m_l g \cos\theta + m_u g \cos\theta)                             \\
+      \sum F_{x_u} = -F_s + m_u g \sin\theta = 0                                                \\
+      F_s = m_u g \sin\theta                                                                    \\
+      m_u g \sin\theta - \mu_k (m_l g \cos\theta + m_u g \cos\theta) + m_l g \sin\theta - T = 0 \\
+      T = m_u g \sin\theta - \mu_k (m_l g \cos\theta + m_u g \cos\theta) + m_l g \sin\theta     \\
+      T = g(m_u \sin\theta - \mu_k \cos\theta (m_l + m_u) + m_l \sin\theta)                     \\
+      T = g(m_u + m_l)(\sin\theta - \mu_k \cos\theta)
+\end{align*}
+
+I begin by drawing the force body diagram:
+
+\includegraphics[scale=.05]{fbd1}
+
+Next, I apply Newton's second law to both the x and y axis:
+
+\begin{align}
+      \sum F_{x} = ma & = F\cos\theta     \\
+      \sum F_{y} = 0  & = F\sin\theta - w
+\end{align}
+Then, I do some algebra to (2) to find $\theta$:
+\begin{align*}
+      0           & = F\sin\theta - w                   \\
+      F\sin\theta & = w                                 \\
+      \sin\theta  & = \frac{w}{F}                       \\
+      \theta      & = \sin^{-1}\left(\frac{w}{F}\right)
+\end{align*}
+
+I draw the appropriate triangle:
+
+\includegraphics[scale=.05]{triangle}
+
+and find that $\cos\theta = \frac{\sqrt{F^2-w^2}}{F}$. Substituting into (1), I get:
+
+\begin{align*}
+      ma = F\cos\theta & = F\left(\frac{\sqrt{F^2-w^2}}{F}\right) \\
+                       & = \sqrt{F^2 - w^2}
+\end{align*}
+Doing some algebra to isolate for $F$,
+\begin{align*}
+      F^2 - w^2 & = m^2a^2              \\
+      F^2       & = m^2a^2 + w^2        \\
+      F         & = \sqrt{m^2a^2 + w^2}
+\end{align*}
+
+With the formula $v^2 = v_0^2 + 2ad$ and doing some algebra to isolate for $a$, we find
+\[a = \frac{v^2 - v_0^2}{2d}\]
+
+Thus,
+\[F         = \sqrt{m^2\left[\frac{v^2 - v_0^2}{2d}\right]^2 + w^2} \]
+
+Because $w = mg$,
+
+\begin{align*}
+      \sqrt{m^2\left[\frac{v^2 - v_0^2}{2d}\right]^2 + w^2} & = \sqrt{m^2\left[\frac{v^2 - v_0^2}{2d}\right]^2 + m^2g^2} \\
+                                                            & = m \sqrt{\left[\frac{v^2 - v_0^2}{2d}\right]^2 + g^2}
+\end{align*}
+
+Now, we do unit conversions on the given information:
+
+\begin{align*}
+      v_0 & = \SI{0}{\meter\per\second}                                                                          \\
+      v   & = \frac{92 \text{ mi}}{1 \text{ hr}} \cdot \frac{1 \text{ hr}}{3600 \text{ s}} \cdot
+      \frac{1609.344 \text{ m}}{1 \text{ mi}} = \SI{41.12768}{\meter\per\second}                                 \\
+      d   & = 2 \ast 3 \text{ ft} \cdot \frac{0.3048 \text{ m}}{1 \text{ ft}} = \SI{1.8288}{\meter}              \\
+      m   & = 0.01 \text{ slug} \cdot \frac{14.5939029 \text{ kg}}{1 \text{ slug}} = \SI{0.145939029}{\kilogram}
+\end{align*}
+
+Plugging in,
+
+\begin{align*}
+      m \sqrt{\left[\frac{v^2 - v_0^2}{2d}\right]^2 + g^2} & =  0.145939029 \sqrt{\left[\frac{41.12768^2 - 0^2}{2(1.8288)}\right]^2 + 9.81^2} \\
+                                                           & =  \SI{67.5058417889}{\newton}
+\end{align*}
+
+Doing unit conversions:
+
+\[\SI{67.5058417889}{\newton} \cdot \frac{0.224808943 \text{ lbf}}{1 \text{ N}} = \SI{15.1724298759}{\newton}\]
+
+But it's wrong!
+
+\includegraphics[scale=.5]{wrong}
+
+Next, I attempt the problem with the pitcher's force purely horizontal:
+
+\includegraphics[scale=.05]{fbd2}
+
+
+\begin{align*}
+      \sum F_{x} = F & = ma                                                         \\
+                     & = m\left[\frac{v^2 - v_0^2}{2d}\right]                       \\
+                     & = 0.145939029\left[\frac{41.12768^2 - 0^2}{2(1.8288)}\right] \\
+                     & = \SI{67.4906587604}{\newton}
+\end{align*}
+
+Which is negligibly different from my first answer, so that's also definitely wrong. \\
+
+Why am I wrong?
+\end{document}
