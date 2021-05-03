@@ -1,5 +1,4 @@
 \documentclass[11pt]{article}
-\newcommand{\numpy}{{\tt numpy}}    % tt font for numpy
 \usepackage[margin=1in]{geometry}
 \usepackage{enumitem}
 \usepackage{amsmath}
@@ -15,7 +14,12 @@
     urlcolor=blue,
 }
 
+\newcommand{\exercise}[1]{\noindent {\bf Exercise #1.}}
+
 \begin{document}
+
+\exercise{5.31}
+
 \begin{align*}
       \sum F_{x_l} = F_s - F_k + m_l g \sin\theta - T = 0                                       \\
       \sum F_{y_l} = n_r - m_l g \cos\theta - n_b = 0                                           \\
@@ -31,6 +35,8 @@
       T = g(m_u \sin\theta - \mu_k \cos\theta (m_l + m_u) + m_l \sin\theta)                     \\
       T = g(m_u + m_l)(\sin\theta - \mu_k \cos\theta)
 \end{align*}
+
+\exercise{4.31}
 
 I begin by drawing the force body diagram:
 
